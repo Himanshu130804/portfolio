@@ -624,3 +624,163 @@ footer .admin-link { margin-left: 0; opacity: .55; }
     aspect-ratio: 4 / 3;
   }
 }
+
+/* =========================================================
+   GALLERY LOAD MORE FIX
+   ========================================================= */
+
+/*
+New gallery items are created after the global
+IntersectionObserver has already been initialized.
+
+Therefore gallery items manage visibility themselves.
+*/
+
+.gallery-card.gallery-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/*
+Smooth entrance for newly loaded photos.
+*/
+
+.gallery-card.gallery-visible {
+  animation: galleryReveal
+    0.6s
+    cubic-bezier(
+      0.2,
+      0.8,
+      0.2,
+      1
+    )
+    both;
+}
+
+@keyframes galleryReveal {
+  from {
+    opacity: 0;
+    transform:
+      translateY(24px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/*
+Slight staggering effect.
+*/
+
+.gallery-card:nth-child(3n + 1) {
+  animation-delay: 0.04s;
+}
+
+.gallery-card:nth-child(3n + 2) {
+  animation-delay: 0.09s;
+}
+
+.gallery-card:nth-child(3n + 3) {
+  animation-delay: 0.14s;
+}
+
+/*
+Load more controls
+*/
+
+.gallery-load-area {
+  margin-top: 38px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.gallery-more {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.gallery-more span {
+  opacity: 0.55;
+  font-size: 0.7rem;
+}
+
+.gallery-count {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.46
+    );
+
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.gallery-complete {
+  text-align: center;
+  margin-top: 32px;
+}
+
+/*
+Lightbox caption
+*/
+
+.lightbox-caption {
+  position: absolute;
+
+  bottom: 28px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  padding:
+    10px
+    16px;
+
+  background:
+    rgba(
+      5,
+      7,
+      12,
+      0.82
+    );
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+
+  backdrop-filter:
+    blur(12px);
+
+  color: white;
+
+  font-size:
+    0.78rem;
+
+  max-width:
+    min(
+      600px,
+      80vw
+    );
+
+  text-align:
+    center;
+}

@@ -52,7 +52,7 @@ function App() {
       (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
       { threshold: 0.12 }
     );
-    const revealTargets = document.querySelectorAll(".section-heading, .about-grid, .achievement-card, .timeline-row, .education-card, .gallery-card, .contact-panel");
+    const revealTargets = document.querySelectorAll(".section-heading, .about-grid, .achievement-card, .timeline-row, .education-card, .contact-panel");
     revealTargets.forEach((target) => observer.observe(target));
 
     updateProgress();
